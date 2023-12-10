@@ -5,8 +5,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+@Document(collection = "users")
+
 @NoArgsConstructor
 public class User {
     @NotBlank(message = "Name cannot be blank")
