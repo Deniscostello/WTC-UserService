@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -12,6 +14,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @NoArgsConstructor
 public class User {
+    @Id
+    private ObjectId id;
+
     @NotBlank(message = "Name cannot be blank")
     @Size(min=2, max=50, message = "Name must be between 2 and 50 characters")
     private String name;
