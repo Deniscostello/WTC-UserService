@@ -2,10 +2,12 @@ package ie.atu.wtcuserservice;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -22,4 +24,14 @@ public class UserController {
         userService.createUser(user);
 
     }
+
+    @PostMapping("/user/getUser")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Map<String, List<User>>> getUser(){
+        List<User> userToSend= userService.getUser();
+        Map<String, List<User>> response = new HashMap<>();
+        response.put("user", userToSend);
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
 }
